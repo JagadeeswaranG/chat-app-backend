@@ -92,11 +92,11 @@ const forgotPassword = async (req,res) => {
 
     const link = `http://localhost:3001/passwordReset?token=${newToken}&id=${user._id}`
 
-    const isSend = await sendEmail(user.email, "Password Reset Link", {name: user.name, link: link})
+     await sendEmail(user.email, "Password Reset Link", {name: user.name, link: link})
 
-    if(isSend){
-      return res.status(500).send({message: "Internal server error"});
-    }
+    // if(isSend){
+    //   return res.status(500).send({message: "Internal server error"});
+    // }
    return res.status(200).send({message: "Email has been send successfully"})
 
   } catch (error) {

@@ -44,31 +44,8 @@ server.on('listening', onListening);
  * on -> receiving side.
  * emit -> sending side.
 */
-io.on("connection",(socket) => {
-  console.log("socket:", socket );
-  console.log("User connected", socket.id);
-
-  /**
-   * for frontend
-   * socket.emit("join-room","hello guys");
-   * no need to use here it's for front end, for backend PFB
-  */
-
-  // for backend
-  socket.on("join-room", (data) => {
-    socket.join(data);
-    console.log(`user ${socket.id} has joined the room ${data}`);
-
-  });
-
-  socket.on("send-message", (data) => {
-    socket.to(data.room).emit("receive-message", data);
-  });
-
-  socket.on("disconnect", () => {
-    console.log("User Disconnected:", socket.id);
-  })
-})
+require("../routes/chat.routes")(io);
+// chatRouter(io);
 
 /**
  * Normalize a port into a number, string, or false.

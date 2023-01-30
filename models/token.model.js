@@ -7,8 +7,7 @@ const Schema = mongoose.Schema;
 
 const tokenSchema = new Schema({
     userId: {
-        type: Schema.Types.ObjectId,
-        ref: "Users",
+        type: String,
         required: true
     },
     token: {
@@ -18,7 +17,7 @@ const tokenSchema = new Schema({
     createdAt: {
         type: Date,
         default: Date.now,
-        expires: 60
+        expires: 120
     }
 });
 
